@@ -1,0 +1,465 @@
+##################
+### CHAPTER 02 ###
+##################
+
+All Python data is an object!
+
+An object contains at minimum
+- a type that defines what it can do
+- a unique id
+- a value consistent with its type
+- a reference count that tracks how often the object is used
+
+The basic Python types are
+- bool
+- int
+- float
+- complex
+- str           
+- list		(mutable)
+- tuple
+- bytes
+- bytearray	(mutable)
+- set		(mutable)
+- frozenset
+- dict		(mutable)
+
+Python is strongly typed. The type of an object does not change even if the value is mutable.
+
+Variable names can only contain the following;
+- A-Z
+- a-z
+- 0-9
+- _
+
+Variable names are case sensitive.
+
+Variables must begin with a letter or underscore (not a digit).
+
+Variables beginning with an underscore are treated specially.
+
+Use = to assign to a variable.
+
+In Python VARIABLES ARE JUST NAMES, NOT LOCATIONS!!! This is different from many other languages. Assignment does not copy a value, it just attaches a name to the object that contains the data. The name is a reference to a thing rather than the thing itself. Because the name points to an object, changing the value assigned to the name just makes the name point to a different object. The reference count of the old object is decremented and the reference count of the new object is incremented.
+
+If you want to know the type of anything use the function type(<thing>), e.g. type(7).
+
+If you want to check whether a variable points to an object of a specific type use isinstance(<thing>, <type>), e.g. isinstance(7, int).
+
+##################
+### CHAPTER 03 ###
+##################
+
+Booleans are True or False.
+
+Cast a value to bool using bool(<value>).
+
+==================================================
+
+Integers may have a lead - to indicate a negative value, e.g. -1.
+
+Integers can use underscores as digit separators, e.g. 1_000_000.
+
+Operators are;
+
+    +   Addition
+    -   Subtraction
+    *   Multiplication
+    /   Floating point division
+    //  Integer (truncating) division
+    %   Modulus (remainder)
+    **  Exponentiation
+
+Cast a value to int using int(<value>).
+
+==================================================
+
+Floats are numbers with a decimal point.
+
+Cast a value to float using float(<value>).
+
+==================================================
+
+When you mix values, Python automatically promotes booleans to integers and integers to floats.
+
+##################
+### CHAPTER 04 ###
+##################
+
+# This is a single line comment.
+
+# Python does not have a multi-line comment,
+# so we have to do this.
+
+This is an if/elif/else block. Recommended indentation is 4 spaces (not a tab!)
+
+	if x > 0:
+	    print("x is positive!")
+	elif x < 0:
+	    print("x is negative!")
+	else:
+	    print("x is zero!")
+
+==================================================
+
+These are the comparison operators:
+
+	==  Test for equality
+	!=  Test for inequality
+	<   Less than
+	<=  Less than or equal to
+	>   Greater than
+	>=  Greater than or equal to
+
+Logical (boolean) operators:
+
+	not
+	and
+	or
+
+What is considered false?
+
+	False
+	0
+	0.0
+	''      (empty string)
+	[]      (empty list)
+	()      (empty tuple)
+	{}      (empty dict)
+	set()   (empty set)
+
+Perform multiple 'or' comparisons using the membership operator (in). If using with a dictionary the comparison is made with the key NOT the value!
+
+	vowels = 'aeiou'
+	letter = 'i'
+	if letter in vowels:
+	    print('This is a vowel')
+
+
+##################
+### CHAPTER 05 ###
+##################
+
+String literals can be specified using single or double quotes. They are immutable, and are a valid Python sequence.
+
+Cast a value to str using str(<value>).
+
+Some string escape sequences;
+
+    \n  newline
+    \t  tab
+    \\  literal backslash
+
+An f string can be specified with an f or F prefix, used for created formatted strings, e.g. f'This is an f string'.
+
+A raw string can be specified with an r or R prefix, which negates escape sequences, e.g. r'This is a raw string'.
+
+Concatenate strings with +, e.g. "Hello" + " " + "World".
+
+Duplicate strings using *, e.g. 'Ha ' * 4.
+
+Get a single character from a string using [<index>] where index is zero based.
+
+	e.g.
+
+	myString[0] 			# returns first/leftmost character.
+	myString[1] 			# returns second character.
+	myString[-1] 			# returns last character.
+	myString[-2] 			# returns second last character.
+
+Get a substring using a slice, which includes a start and end offset separated by :. The slice will include characters from start to
+one before end. An optional third step argument can also be provided.
+
+    [:]                     extracts the entire seqeunce from start to end
+    [<start>:]              extracts from the start offset to the end
+    [:<end>]                extracts from the beginning to end offset - 1.
+    [<start>:<end>]         extracts from the start offset to end offset - 1.
+    [<start>:<end>:<step>]  extracts from the start offset to end offset - 1 skipping characters by step.
+
+len(<string>) returns characters in the string. It is not a string specific function.
+
+String-specific functions should be called using a . to refer to the function.
+
+<string>.split(<separator>) splits the string using the specified separator and returns them as a list.
+
+<separator string>.join(<list>) is the opposite of split, joining a list of strings into a single string.
+
+	e.g. ", ".join(myNames).
+
+<string>.replace(<string to replace>, <replacement string>, <number of instances to replace>) is used for substring substitution.
+<string>.strip() will replace leading and trailing whitespace characters.
+<string>.strip('X') will replace leading and trailing 'X' characters.
+<string>.strip('AEIOU') will replace any leading and trailing 'A', 'E', 'I', 'O' and 'U' characters.
+<string>.lstrip() will replace only leading whitespace characters.
+<string>.rstrip() will replace only trailing whitespace characters.
+<string>.capitalize() will capitalize the first word
+<string>.title() will capitalize all the words
+<string>.upper will convert all characters to upper case
+<string>.lower will convert all characters to lower case
+
+==================================================
+
+Python has three ways of formatting strings
+
+    old style (Python 2+)
+    new style (Python 2.6+)
+    f-strings (Python 3.6+)
+
+F strings are now the recommended way. Simply put an F before the opening string quote and include data using {}.
+
+e.g.
+
+firstName = "Trevor"
+secondName = "Hingley"
+print(F'Hello {firstName} {secondName}')
+
+##################
+### CHAPTER 06 ###
+##################
+
+Python has two loops, while and for.
+
+==================================================
+
+Below is a while loop. The else section is executed if the while loop exits normally (i.e. no break is used).
+
+	while <condition>:
+	    <statement(s)>
+	else:
+	    <statement(s)>
+
+Exit a loop with break.
+
+Jump to the next iteration with continue.
+
+==================================================
+
+Iterable data includes strings, lists, tuples and dictionaries.
+
+Use for and in to iterate through data.
+
+	e.g.
+
+	textData = "The quick brown fox"
+
+	for letter in textData:
+	    if letter in "xX":
+	        print("X found!")
+	        break
+	else:
+	    print("No X found...")
+
+==================================================
+
+Generate number sequences using range().
+
+	e.g.
+
+	for x in range(0,3):
+		print(x)
+
+##################
+### CHAPTER 07 ###
+##################
+
+Tuples and lists can contain elements of different types.
+
+Tuples are immutable. You assign elements only once and then cannot be changed.
+
+List are mutable. You can insert and delete elements as required.
+
+==================================================
+
+The syntax for creating tuples is a little inconsistent.
+
+    e.g.
+
+    emptyTuple = ()
+
+    singleElementTupleA = 'Groucho',
+    singleElementTupleB = ('Groucho',)
+
+    multiElementTupleA = 'Groucho', 'Chico', 'Harpo'
+    multiElementTupleB = ('Groucho', 'Chico', 'Harpo')
+
+Tuples allow assignment to multiple variables at once, called tuple unpacking.
+
+    e.g.
+
+    a, b, c = multiElementTupleA
+
+You can use tuples to exchange values in a single statement without having to use temporary variables.
+
+    e.g.
+
+    forename = 'hingley'
+    surname = 'trevor'
+
+    forename, surname = surname, forename
+
+Cast to a tuple using tuple().
+
+Combine tuples using +.
+
+Duplicate items using *.
+
+==================================================
+
+A list is made from zero or more elements separated by commas and surrounded by square brackets.
+
+    e.g.
+
+    emptyList = []
+    weekndDays = ['Saturday', 'Sunday']
+
+Cast iterable types to a list using list().
+
+As with strings, get a single item from a list using [<offset>].
+
+You can extract a subsequence of a list using a slice.
+
+Add an item to the end with append().
+
+Add an item by offset with insert().
+
+Change an item by [<offset>].
+
+Delete an item by Offset with del.
+
+Delete an item by Value with remove().
+
+Test for a value with in.
+
+Count occurences of a Value with count(<value>).
+
+Get the number of items with len().
+
+
+##################
+### CHAPTER 08 ###
+##################
+
+Dictionaries store key/value pairs. They are mutable, but keys must be an immutable type.
+
+	e.g.
+
+	emptyDict = {}
+	letterCountDict = {'a': 30, 'b':22, 'c':5}
+
+Convert to a dict using the dict() function.
+
+To add an item just refer to the item by [key] and assign a value. If already present, the existing value will be replaced with the new value. If it is a new key, then a new dictionary item will be added.
+
+##################
+### CHAPTER 09 ###
+##################
+
+Function names have the same rules as for variable names. They must start with an underscore or a letter and must contain only alphanumeric and underscore characters.
+
+	e.g.
+
+	def doSomething1():
+		statement(s)
+
+	def doSomething2():
+		statement(s)
+		return true
+
+	def doSomething3(forename, surname):
+		return forename + ' ' + surname
+
+The None keyword is used to define a null value, or no value at all. None is not the same as 0, False, or an empty string. None is a data type of its own (NoneType) and only None can be None.
+
+Functions can be called with arguments specified positionally (in order) or by name.
+
+	e.g.
+
+	doSomething3(surname='Smith, forename='John')
+
+Functions can have default arguments. Note that these are calculated when the function is defined, not at runtime. Therefore mutable data types such as list or dictionary should be used with care, as this can result in unexpected behaviour when data from previous calls is retained!
+
+==================================================
+
+When used with a function parameter, an asterisk groups a variable number of positional arguments into a single tuple of parameter values.
+
+	e.g.
+
+	def print_args(*args):
+		print('Positional tuple: ', args)
+
+	print_args(1, 2, 3)
+
+This is useful for writing functions that accept a variable number of arguments. If you have required positional arguments, put them first. *args should then go at the end and grab the remaining arguments.
+
+==================================================
+
+You can use ** to group keyword arguments into a dictionary, where the argument names are the keys and their values are the corresponding dictionary values.
+
+	e.g.
+
+	def print_kwargs(**args):
+		print('Keyword arguments: ', kwargs
+
+	print kwargs(forename='John', surname='smith', age=49)
+
+IMPORTANT: If an argument is mutable, its value can be changed from inside the function!!!
+
+==================================================
+
+Functions are objects like everything else. They can be assigned to variables, passed as arguments to other functions and returned from functions.
+
+Functions can be defined inside another function (an Inner Function).
+
+An inner function can act as a closure.
+
+A Lambda function is an anonymous function expressed as a single statement.
+
+A Generator is a Python sequence creation object, allowing you to iterate through potentially huge sequences without creating and storing the entire sequence in memory at once. Generators are often the source of data for iterators. A Generator Function is a function that returns its value with a yield statement rather than return.
+
+Functions which begin with a double underscore ('__') are reserved. For example, the main program is assigned the name __main__.
+
+==================================================
+
+Handle errors with try and except.
+
+	e.g.
+
+	try:
+		statement(s)
+	except:
+		statement(s)
+
+Code in the try block is run. If there is an error the except block is entered, otherwise it is skipped. 
+
+A plain except with no arguments is a catch-all for any exception type. To get the exception details you can specify an exception object.
+
+	e.g.
+
+	try:
+		statement(s)
+	except Exception err:
+		statement(s)
+
+You can specify multiple exception handlers for specific exception types.
+
+	e.g.
+
+	try:
+		statement(s)
+	except IndexError as err:
+		statement(s)	
+	except Exception as other:
+		statement(s)
+
+We can make our own exception types using the Exception base class.
+
+	e.g.
+
+	class MyException(Exception):
+		pass
+
+##################
+### CHAPTER 10 ###
+##################
+
+

@@ -462,4 +462,77 @@ We can make our own exception types using the Exception base class.
 ### CHAPTER 10 ###
 ##################
 
+Object (class) variables are called attributes and functions are called methods.
+
+Create a new type of object using class.
+
+	e.g.
+
+	class Cat:
+		pass
+
+	cat1 = Cat()
+	cat1.name = 'socks'
+	cat1.age = 3
+
+The pass keyword indicates the class is empty. We can assign instance attributes during or after an instance is created.
+
+We can assign instance attributes during instance initialisation using the __init__ method.
+
+	e.g.
+
+	class Cat:
+		def __init__(self, name, age):
+			self.name = name
+			self.age = age
+
+	cat1 = Cat('socks', 3)
+
+Note that we can make many objects from a class, but there can be only one class. Remember that Python implements data as objects, so the class itself is an object.
+
+Python classes support inheritance.
+
+	e.g.
+
+	class Car():
+		pass
+
+	class Golf(Car):
+		pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
